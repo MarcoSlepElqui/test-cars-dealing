@@ -17,7 +17,7 @@ export class CarsController {
 
 
     @Get(':id')
-    getCarById(@Param('id') id2:string){/*
+    getCarById(@Param('id', ParseIntPipe) id2:number){/*
         console.log({id2});
         console.log('id = '+id2);/// lo mismo
         if (+id2 < 2) {
@@ -40,7 +40,11 @@ export class CarsController {
     
     @Patch(':id')
     updateCar(
+<<<<<<< HEAD
             @Param('id') id: string, 
+=======
+            @Param('id') id: number, 
+>>>>>>> 55fbd944ee98332b63b34d629efa632629c4e2ad
             @Body() body:any
         ){
       
@@ -48,7 +52,11 @@ export class CarsController {
     }  
     
      @Delete(':id')
+<<<<<<< HEAD
     deleteCar(@Param('id') id: string){
+=======
+    deleteCar(@Param('id') id: number){
+>>>>>>> 55fbd944ee98332b63b34d629efa632629c4e2ad
       
         return {
             ok: "Eliminando un auto",
