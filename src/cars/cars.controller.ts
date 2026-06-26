@@ -1,8 +1,7 @@
-import { Controller, Get, MethodNotAllowedException, Param , ParseIntPipe, Post,Body, Patch, Delete} from '@nestjs/common';
+import { Controller, Get, MethodNotAllowedException, Param , ParseUUIDPipe, ValidationPipe,Post,Body, Patch, Delete, UsePipes} from '@nestjs/common';
 import { get } from 'http';
 import { CarsService } from './cars.service';
-
-
+import { CreateCarsDto } from './dto/create-cars.dto';
 
 @Controller('cars')
 export class CarsController {
@@ -17,7 +16,7 @@ export class CarsController {
 
 
     @Get(':id')
-    getCarById(@Param('id', ParseIntPipe) id2:number){/*
+    getCarById(@Param('id', new  ParseUUIDPipe({version: '4'}) ) id2:string    ){/*
         console.log({id2});
         console.log('id = '+id2);/// lo mismo
         if (+id2 < 2) {
@@ -30,21 +29,18 @@ export class CarsController {
     }
 
     @Post()
-    createCar(@Body() body:any){
+    @UsePipes(ValidationPipe)
+    createCar(@Body() objCreateCarsDto: CreateCarsDto){
        /* return {
             ok: "Creando un auto",
             method: 'POST'
         };*/
-        return body;
+        return objCreateCarsDto;
     }  
     
     @Patch(':id')
     updateCar(
-<<<<<<< HEAD
-            @Param('id') id: string, 
-=======
             @Param('id') id: number, 
->>>>>>> 55fbd944ee98332b63b34d629efa632629c4e2ad
             @Body() body:any
         ){
       
@@ -52,12 +48,8 @@ export class CarsController {
     }  
     
      @Delete(':id')
-<<<<<<< HEAD
-    deleteCar(@Param('id') id: string){
-=======
+
     deleteCar(@Param('id') id: number){
->>>>>>> 55fbd944ee98332b63b34d629efa632629c4e2ad
-      
         return {
             ok: "Eliminando un auto",
             method: 'DELETE',
@@ -66,3 +58,5 @@ export class CarsController {
     }  
 
 }
+
+
