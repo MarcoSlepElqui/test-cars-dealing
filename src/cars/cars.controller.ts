@@ -1,8 +1,12 @@
 import { Controller, Get, MethodNotAllowedException, Param , ParseUUIDPipe, ValidationPipe,Post,Body, Patch, Delete, UsePipes} from '@nestjs/common';
 import { get } from 'http';
 import { CarsService } from './cars.service';
+/*
 import { CreateCarsDto } from './dto/create-cars.dto';
-
+import { UpdateCarsDto } from './dto/update-cars.dto';
+*/
+///se crea un index para agrupar los dtos y no tener que importarlos de manera individual
+import { CreateCarsDto, UpdateCarsDto } from './dto/index';
 @Controller('cars')
 export class CarsController {
    
@@ -35,26 +39,23 @@ export class CarsController {
             ok: "Creando un auto",
             method: 'POST'
         };*/
-        return objCreateCarsDto;
+        return this.carsServices.create(objCreateCarsDto);
     }  
     
     @Patch(':id')
     updateCar(
-            @Param('id') id: number, 
-            @Body() body:any
+            @Param('id',  ParseUUIDPipe) id: string, 
+            @Body() objUpdateCarsDto: UpdateCarsDto
         ){
       
-        return body;
+        return this.carsServices.update(id, objUpdateCarsDto);
+        
     }  
     
      @Delete(':id')
 
-    deleteCar(@Param('id') id: number){
-        return {
-            ok: "Eliminando un auto",
-            method: 'DELETE',
-            id: id  
-        };
+    deleteCar(@Param('id', ParseUUIDPipe) id: string){
+        return this.carsServices.delete(id);
     }  
 
 }
