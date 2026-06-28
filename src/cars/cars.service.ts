@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { CreateCarsDto , UpdateCarsDto} from './dto/index';
 @Injectable()
 export class CarsService {
-    private cars: Car[] = [
+    private cars: Car[] = [/*
         {
             id:uuid(),
             brand: 'Toyota',
@@ -19,7 +19,7 @@ export class CarsService {
             id:uuid(),
             brand: 'Jeep',
             model: 'Cherokee'
-        }
+        }*/
     ];
 
     findAll(){

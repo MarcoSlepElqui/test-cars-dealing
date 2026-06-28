@@ -18,17 +18,25 @@ export class BrandsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.brandsService.findOne(+id);
+  findOne(@Param('id') id2: string) {
+    /*
+        console.log({id2});
+        console.log('id = 'id2);/// lo mismo
+        if (+id2 < 2) {
+            return this.brands[id2];
+        }else   
+            return "Número mayor que el arreglo";*/
+        console.log({id:id2});
+        return this.brandsService.findOne(id2);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBrandDto: UpdateBrandDto) {
-    return this.brandsService.update(+id, updateBrandDto);
+    return this.brandsService.update(id, updateBrandDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.brandsService.remove(+id);
+    return this.brandsService.remove(id);
   }
 }

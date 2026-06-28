@@ -7,7 +7,7 @@ import { UpdateCarsDto } from './dto/update-cars.dto';
 */
 ///se crea un index para agrupar los dtos y no tener que importarlos de manera individual
 import { CreateCarsDto, UpdateCarsDto } from './dto/index';
-@Controller('cars')
+@Controller('cars') 
 export class CarsController {
    
     constructor( 
