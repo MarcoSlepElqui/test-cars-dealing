@@ -4,22 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { CreateCarsDto , UpdateCarsDto} from './dto/index';
 @Injectable()
 export class CarsService {
-    private cars: Car[] = [/*
-        {
-            id:uuid(),
-            brand: 'Toyota',
-            model: 'Corolla'
-        },
-        {
-            id:uuid(),
-            brand: 'Honda',
-            model: 'Civic'
-        },
-        {
-            id:uuid(),
-            brand: 'Jeep',
-            model: 'Cherokee'
-        }*/
+    private cars: Car[] = [
     ];
 
     findAll(){
@@ -91,6 +76,9 @@ export class CarsService {
         let carDB = this.findOneByID(id);//busca el auto en la base de datos
         this.cars = this.cars.filter(car => car.id !== id);//filtra y devuelve todos los autos que no tengan el id que se busca
         return carDB;//en caso que no encontro el id se envía el auto que se buscaba
+    }
+    fillCarsWithSeedData(autos: Car[]){
+        this.cars = autos;
     }
 
 }

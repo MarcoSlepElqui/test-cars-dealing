@@ -6,25 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class BrandsService {
-  private brands: Brand[] = [/*
-        {
-            id:uuid(),
-            name: 'Toyota',
-            createdAt : new Date().getTime()
-         
-        },
-        {
-            id:uuid(),
-            name: 'Honda',
-            createdAt : new Date().getTime()
-           
-        },
-        {
-            id:uuid(),
-            name: 'Jeep',
-            createdAt : new Date().getTime()
-          
-        }*/
+  private brands: Brand[] = [
     ];
   
   create(createBrandDto: CreateBrandDto) {
@@ -75,4 +57,8 @@ export class BrandsService {
         this.brands = this.brands.filter(marca => marca.id !== id);//filtra y devuelve todos los autos que no tengan el id que se busca
         return brandDB;//en caso que no encontro el id se envía el auto que se buscaba
   }
+
+   fillCarsWithSeedData(marcas: Brand[]){
+          this.brands = marcas;
+      }
 }
